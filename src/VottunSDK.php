@@ -24,7 +24,7 @@ class VottunSDK {
      * @throws DecodingExceptionInterface
      * @throws ClientExceptionInterface
      */
-    public function makeRequest($endpoint, $method = 'GET', $data = []): array
+    public function makeRequest($endpoint, $method = 'GET', $data = [], $contentType = 'application/json'): array
     {
         $httpClient = HttpClient::create();
 
@@ -32,7 +32,7 @@ class VottunSDK {
         $headers = [
             'Authorization' => 'Bearer ' . $this->apiKey,
             'x-application-vkn' => $this->apiAppId,
-            'Content-Type' => 'application/json',
+            'Content-Type' => $contentType,
         ];
 
         $response = $httpClient->request($method, $url, [
